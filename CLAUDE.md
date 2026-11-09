@@ -70,7 +70,15 @@ de la app** — no lo importes ni lo modifiques, reescríbelo como componentes T
 
 ## Flujo de trabajo
 
-El README indica que el proyecto se desarrolla con *Spec Driven Design* usando los comandos
-`/spec` y `/spec-impl` de las skills `Klerith/fernando-skills`
-(`npx skills@latest add Klerith/fernando-skills`). Si esas skills no están instaladas, avisa al
-usuario en vez de improvisar el flujo.
+El proyecto se desarrolla con *Spec Driven Design* usando las skills `/spec` y `/spec-impl` de
+`Klerith/fernando-skills`, instaladas en el proyecto: viven en `.agents/skills/` (versionadas,
+fijadas en `skills-lock.json`) y `.claude/skills/` son symlinks hacia ellas. Para actualizarlas,
+`npx skills@latest add Klerith/fernando-skills`; no edites los `SKILL.md` a mano.
+
+- `/spec` solo escribe la spec en `specs/NN-slug.md` en estado `Borrador`/`Draft`; pasarla a
+  `Aprobado` lo hace el usuario, nunca el agente.
+- `/spec-impl NN-slug` solo implementa specs aprobadas, crea su propia rama `spec-NN-slug`
+  (controlado por `AutoCreateBranch` en `specs/.spec-config.yml`), avanza paso a paso pausando
+  para revisar el diff y no hace commit salvo petición explícita.
+- Las ramas de configuración/infraestructura fuera de specs siguen el patrón `NN-nombre`
+  (p. ej. `01-config`).
