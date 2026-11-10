@@ -15,6 +15,10 @@ Ahora mismo es el esqueleto recién generado por `create-next-app` (`app/page.ts
 Next.js 16 (App Router) + React 19 + TypeScript estricto + Tailwind v4, con `package.json`,
 npm y ESLint. Lo que sí se mantiene: textos de UI, README y commits en español.
 
+## Skills
+usa siempre la skill /frontend-design para el diseño de la interfaz de usuario
+
+
 ## Comandos
 
 ```bash
