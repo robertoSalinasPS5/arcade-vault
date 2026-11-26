@@ -1,13 +1,20 @@
-// Portada provisional para comprobar el tema global; la biblioteca real llegará con su spec.
+import type { Metadata } from "next";
+import { Library } from "@/components/library";
+
+export const metadata: Metadata = {
+  title: "Biblioteca · Arcade Vault",
+};
+
 export default function Home() {
   return (
-    <main className="av-main fade-in">
+    <div className="fade-in">
       <section className="av-hero">
         <h1 className="flicker">ARCADE VAULT</h1>
         <div className="sub">
           INSERTA UNA MONEDA PARA JUGAR <span className="blink">_</span>
         </div>
       </section>
-    </main>
+      <Library />
+    </div>
   );
 }
