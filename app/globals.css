@@ -46,8 +46,14 @@
   --bronze: #d97a3a;
   --line: rgba(0, 245, 255, 0.18);
   --line-2: rgba(255, 255, 255, 0.06);
-  --pixel: var(--font-press-start-2p), system-ui, monospace;
-  --mono: var(--font-jetbrains-mono), var(--font-courier-prime), "Courier New", monospace;
+  /* Nombre literal en vez de var(--font-press-start-2p): esa variable incluye el
+   * "Press Start 2P Fallback" (Arial reescalado ×2.24) de next/font, y los glifos
+   * que la fuente no tiene (≡, ▶, ★, ♥…) salían más anchos que en la referencia.
+   * El @font-face de next/font es global, así que la fuente auto-hospedada se sigue usando. */
+  --pixel: "Press Start 2P", system-ui, monospace;
+  /* Igual para --mono: con "JetBrains Mono Fallback" los glifos que JetBrains Mono no
+   * tiene (p. ej. el ▲ de .cover-rocas) caían en Arial en vez de en Courier Prime. */
+  --mono: "JetBrains Mono", "Courier Prime", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
