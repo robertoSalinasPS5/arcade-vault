@@ -1,5 +1,5 @@
 # SPEC 02 — Pantallas Home y Acerca de
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-11-26
 > **Objetivo:** Portar la landing (Home) y la pantalla Acerca de con contacto de `references/templates/home-about/` a las rutas `/` y `/acerca`, moviendo la biblioteca a `/juegos`.
