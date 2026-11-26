@@ -5,13 +5,15 @@ import { usePathname } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { useUser } from "@/components/user-provider";
 
-type Section = "biblioteca" | "salon" | "acceso";
+type Section = "inicio" | "biblioteca" | "salon" | "acerca" | "acceso";
 
-// Biblioteca abarca también el detalle y el reproductor (/juegos/*).
+// Biblioteca abarca la lista (/juegos), el detalle y el reproductor (/juegos/*).
 function activeSection(pathname: string | null): Section | null {
   if (!pathname) return null;
-  if (pathname === "/" || pathname.startsWith("/juegos/")) return "biblioteca";
+  if (pathname === "/") return "inicio";
+  if (pathname === "/juegos" || pathname.startsWith("/juegos/")) return "biblioteca";
   if (pathname === "/salon") return "salon";
+  if (pathname === "/acerca") return "acerca";
   if (pathname === "/acceso") return "acceso";
   return null;
 }
@@ -36,15 +38,17 @@ function NavView({ pathname }: { pathname: string | null }) {
   return (
     <>
       <nav className="av-nav">
-        <Link href="/" className="logo" onClick={close} aria-label="Arcade Vault, ir a la biblioteca">
+        <Link href="/" className="logo" onClick={close} aria-label="Arcade Vault, ir al inicio">
           <div className="logo-mark" />
           <div className="logo-text neon-cyan">
             ARCADE <span className="neon-magenta">VAULT</span>
           </div>
         </Link>
         <div className="links">
-          <Link href="/" className={cls("biblioteca")}>Biblioteca</Link>
+          <Link href="/" className={cls("inicio")}>Inicio</Link>
+          <Link href="/juegos" className={cls("biblioteca")}>Biblioteca</Link>
           <Link href="/salon" className={cls("salon")}>Salón de la Fama</Link>
+          <Link href="/acerca" className={cls("acerca")}>Acerca de</Link>
         </div>
         <div className="spacer" />
         <div className="coin-counter">
@@ -73,8 +77,10 @@ function NavView({ pathname }: { pathname: string | null }) {
       <div className={"av-mobile-backdrop" + (open ? " open" : "")} onClick={close} aria-hidden="true" />
       <aside id="av-mobile-panel" className={"av-mobile-panel" + (open ? " open" : "")} inert={!open}>
         <div className="pixel neon-cyan" style={{ fontSize: 11, marginBottom: 16 }}>MENÚ</div>
-        <Link href="/" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
+        <Link href="/" className={cls("inicio")} onClick={close}>Inicio</Link>
+        <Link href="/juegos" className={cls("biblioteca")} onClick={close}>Biblioteca</Link>
         <Link href="/salon" className={cls("salon")} onClick={close}>Salón de la Fama</Link>
+        <Link href="/acerca" className={cls("acerca")} onClick={close}>Acerca de</Link>
         <Link href="/acceso" className={cls("acceso")} onClick={close}>{user ? "Cuenta" : "Iniciar Sesión"}</Link>
         <div style={{ flex: 1 }} />
         <div className="pixel" style={{ fontSize: 9, color: "var(--ink-faint)", letterSpacing: "0.16em" }}>
